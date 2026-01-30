@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.test-force {
+  @apply bg-green-600 text-white p-4;
+}

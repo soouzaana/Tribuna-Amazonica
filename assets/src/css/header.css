@@ -1,0 +1,204 @@
+/* ===========================
+   VARIÁVEIS
+=========================== */
+:root {
+  --green-dark: #064e3b;
+  --green-mid: #065f46;
+  --green-light: #10b981;
+}
+
+/* ===========================
+   CORES UTILITÁRIAS
+=========================== */
+.bg-green-dark {
+  background-color: var(--green-dark);
+}
+
+.text-green-dark {
+  color: var(--green-dark);
+}
+
+/* ===========================
+   CONTAINERS
+=========================== */
+.header-data,
+.header-main,
+.menu-scroll {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   TOPO
+=========================== */
+.header-data {
+  padding: 0.5rem 1rem;
+}
+
+.header-data {
+  background-color: var(--green-dark);
+}
+
+.header-data-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.redes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.redes a {
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.redes a:hover {
+  color: var(--green-light);
+}
+
+
+/* ICONS */
+.icon {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+/* ===========================
+   LOGO / BUSCA
+=========================== */
+.header-main {
+  padding: 1.25rem 1rem;
+  gap: 1rem;
+}
+
+.search-box {
+  width: 280px;
+}
+
+.search-box form {
+  width: 100%;
+}
+
+.search-box input[type='search'] {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.search-box input[type='search']:focus {
+  outline: none;
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+/* ===========================
+   MENU DESKTOP
+=========================== */
+.menu-div {
+  background-color: var(--green-mid);
+}
+
+.menu-scroll {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+.menu-scroll a {
+  color: #ecfdf5;
+  font-weight: 600;
+  padding: 0.75rem 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.menu-scroll a:hover {
+  color: #a7f3d0;
+}
+
+/* ===========================
+   DRAWER MOBILE
+=========================== */
+#drawer {
+  box-shadow: -6px 0 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+#drawer nav a {
+  padding: 0.75rem 0;
+  font-weight: 600;
+}
+
+/* ===========================
+   OVERLAY
+=========================== */
+#overlay {
+  backdrop-filter: blur(2px);
+}
+
+/* ===========================
+   TICKER
+=========================== */
+.ticker-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ticker-label {
+  background: #047857;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.ticker-wrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: ticker-scroll 20s linear infinite;
+}
+
+.ticker-item {
+  font-size: 0.875rem;
+  color: #d1fae5;
+}
+
+/* ===========================
+   ANIMAÇÕES
+=========================== */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
