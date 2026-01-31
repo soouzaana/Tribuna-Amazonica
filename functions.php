@@ -101,7 +101,56 @@ function meu_tema_assets()
     filemtime(get_template_directory() . '/assets/src/css/law.css')
   );
 
+  /* ===== NEWSLETTER CSS ===== */
+  wp_enqueue_style(
+    'meu-tema-newsletter',
+    get_template_directory_uri() . '/assets/src/css/newsletter.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/newsletter.css')
+  );
+
+
   require get_template_directory() . '/inc/icons.php';
 }
 
 add_action('wp_enqueue_scripts', 'meu_tema_assets');
+
+/* ===== NEWSLETTER ===== */
+
+add_action('admin_post_nopriv_newsletter_signup', 'handle_newsletter_signup');
+add_action('admin_post_newsletter_signup', 'handle_newsletter_signup');
+
+function handle_newsletter_signup()
+{
+  // Segurança
+  if (
+    !isset($_POST['newsletter_nonce']) ||
+    !wp_verify_nonce($_POST['newsletter_nonce'], 'newsletter_signup')
+  ) {
+    wp_die('Ação inválida');
+  }
+
+  // Email
+  $email = isset($_POST['newsletter_email'])
+    ? sanitize_email($_POST['newsletter_email'])
+    : '';
+
+  if (!is_email($email)) {
+    wp_die('Email inválido');
+  }
+
+  /**
+   * AQUI você decide o que fazer com o email
+   */
+
+  // Exemplo 1: salvar no banco
+  add_option('newsletter_' . md5($email), $email);
+
+  // Exemplo 2 (melhor): salvar como CPT
+  // Exemplo 3: enviar para Mailchimp
+  // Exemplo 4: enviar email de confirmação
+
+  // Redirect pós-submit
+  wp_redirect(home_url('/obrigado'));
+  exit;
+}

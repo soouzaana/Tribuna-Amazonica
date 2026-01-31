@@ -1,0 +1,99 @@
+.newsletter {
+  background: linear-gradient(to right, #065f46, #047857);
+  padding: 3rem 1rem;
+  border-radius: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.newsletter-title {
+  font-size: 1.9rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-text {
+  font-size: 1rem;
+  color: #a7f3d0;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .newsletter-form {
+    flex-direction: row;
+  }
+}
+
+.newsletter-input {
+  flex: 1;
+  height: 36px;
+  padding: 0 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #82b8a9;
+  color: #065f46;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+  border-radius: 0.375rem;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.newsletter-button:hover {
+  background: #369569;
+}
+
+.newsletter-button:hover .button-icon{
+  fill: #369569;
+}
+
+.button-icon {
+  stroke: #065f46;
+  fill: #82b8a9;
+}
+
+.newsletter-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.newsletter-checkbox {
+  width: 16px;
+  height: 16px;
+  background-color: #065f46;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.newsletter-label {
+  font-size: 0.875rem;
+  color: white;
+  cursor: pointer;
+}

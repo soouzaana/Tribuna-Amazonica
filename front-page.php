@@ -14,6 +14,9 @@
   <!-- direito administrativo -->
   <?php get_template_part('template-parts/administrative'); ?>
 
+  <!-- newsletter -->
+  <?php get_template_part('template-parts/newsletter'); ?>
+
 </main>
 
 <?php get_footer(); ?>
