@@ -10,7 +10,7 @@
     <section class="md:col-span-2">
       <div class="flex justify-between items-baseline mb-4">
         <h2 class="section-title">Últimas Notícias</h2>
-        <a href="<?php echo get_permalink( get_option('page_for_posts') ); ?>" class="section-link">
+        <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>" class="section-link">
           Ver todos →
         </a>
       </div>

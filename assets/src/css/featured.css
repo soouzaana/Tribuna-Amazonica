@@ -1,0 +1,75 @@
+/* DESTAQUE */
+.featured {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+
+.featured-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1s ease;
+  z-index: 0;
+}
+
+.featured:hover .featured-bg {
+  transform: scale(1.05);
+}
+
+.featured-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+.featured-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: white;
+  z-index: 2;
+}
+
+/* badge */
+.featured-badge {
+  background: #10b981;
+  color: #064e3b;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+/* título */
+.featured-title {
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.featured:hover .featured-title {
+  color: #10b981; /* verde */
+}
+
+/* meta */
+.featured-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 0.5rem;
+}

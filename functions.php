@@ -63,6 +63,14 @@ function meu_tema_assets()
     '1.0'
   );
 
+  /* ===== FEATURED CSS ===== */
+  wp_enqueue_style(
+    'meu-tema-featured',
+    get_template_directory_uri() . '/assets/src/css/featured.css',
+    [],
+    '1.0'
+  );
+
   require get_template_directory() . '/inc/icons.php';
 }
 
