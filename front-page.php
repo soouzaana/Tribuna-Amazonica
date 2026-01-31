@@ -19,6 +19,10 @@
 
   <!-- video section -->
   <?php get_template_part('template-parts/section-videos'); ?>
+
+  <!-- opiniao e doutrina -->
+  <?php get_template_part('template-parts/opinion-doutrine'); ?>
+
 </main>
 
 <?php get_footer(); ?>

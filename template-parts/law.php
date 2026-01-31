@@ -22,8 +22,13 @@ $law_posts = new WP_Query([
     $category = get_category_by_slug('jurisprudencia');
     $category_link = $category ? get_category_link($category->term_id) : '#';
     ?>
-    <a href="<?php echo esc_url($category_link); ?>" class="section-link">
-      Ver todos →
+    <a href="<?php echo get_permalink(get_option('page_for_posts')); ?>" class="section-link">
+      Ver todos
+      <span class="arrow-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </span>
     </a>
   </div>
 
