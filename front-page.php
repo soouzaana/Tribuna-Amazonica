@@ -34,6 +34,9 @@
 
   <!-- lifestyle e wellness -->
   <?php get_template_part('template-parts/lifestyle-wellness'); ?>
+
+  <!-- patrocinador -->
+  <?php get_template_part('template-parts/backing'); ?>
 </main>
 
 <?php get_footer(); ?>

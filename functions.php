@@ -185,3 +185,27 @@ function create_colunistas_cpt()
   register_post_type('colunistas', $args);
 }
 add_action('init', 'create_colunistas_cpt');
+
+function create_sponsors_cpt()
+{
+  $labels = [
+    'name' => 'Patrocinadores',
+    'singular_name' => 'Patrocinador',
+    'add_new_item' => 'Adicionar Patrocinador',
+    'edit_item' => 'Editar Patrocinador',
+    'all_items' => 'Todos os Patrocinadores',
+  ];
+
+  $args = [
+    'label' => 'Patrocinadores',
+    'labels' => $labels,
+    'public' => true,
+    'has_archive' => false,
+    'menu_position' => 5,
+    'supports' => ['title', 'thumbnail'],
+    'show_in_rest' => true,
+  ];
+
+  register_post_type('sponsors', $args);
+}
+add_action('init', 'create_sponsors_cpt');
