@@ -31,6 +31,9 @@
 
   <!-- instagram -->
   <?php get_template_part('template-parts/section-instagram'); ?>
+
+  <!-- lifestyle e wellness -->
+  <?php get_template_part('template-parts/lifestyle-wellness'); ?>
 </main>
 
 <?php get_footer(); ?>
