@@ -26,6 +26,8 @@
   <!-- mais lidas -->
   <?php get_template_part('template-parts/most-read'); ?>
 
+  <!-- colunistas -->
+  <?php get_template_part('template-parts/section-colunists'); ?>
 </main>
 
 <?php get_footer(); ?>
