@@ -93,6 +93,14 @@ function meu_tema_assets()
     filemtime(get_template_directory() . '/assets/src/css/editor-pick.css')
   );
 
+  /* ===== LAW CSS ===== */
+  wp_enqueue_style(
+    'meu-tema-law',
+    get_template_directory_uri() . '/assets/src/css/law.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/law.css')
+  );
+
   require get_template_directory() . '/inc/icons.php';
 }
 
