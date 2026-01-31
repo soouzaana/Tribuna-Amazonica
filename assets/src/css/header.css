@@ -61,7 +61,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .redes a:hover {
@@ -80,60 +79,113 @@
    LOGO / BUSCA
 =========================== */
 .header-main {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 1.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 
-.search-box {
-  width: 280px;
+.search-box{
+  width: 25%;
 }
 
-.search-box form {
-  width: 100%;
-}
-
-.search-box input[type='search'] {
-  width: 100%;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  transition:
+.search-input {
+  border: 1px solid #ddd; /* cinza claro */
+  border-radius: 1.5rem;   /* borda bem redonda */
+  padding: 0.4rem 0.75rem;
+  background-color: #fff;
+    transition:
     border-color 0.2s,
     box-shadow 0.2s;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.search-box input[type='search']:focus {
-  outline: none;
-  border-color: var(--green-light);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+.search-input:focus-within {
+  border-color: #10b981; /* verde */
 }
+
+.search-input:focus-within .search-icon {
+  color: #10b981;
+}
+
+.search-input:focus-within .search-field::placeholder {
+  color: #10b981;
+}
+
+.search-icon {
+  margin-right: 8px;
+  font-size: 14px;
+  color: #999;
+}
+
+.search-field {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+.search-field::placeholder {
+  color: #aaa;
+}
+
 
 /* ===========================
-   MENU DESKTOP
+   MENU DESKTOP (estilo Vue)
 =========================== */
 .menu-div {
   background-color: var(--green-mid);
+  padding: 0 11rem; /* igual ao Vue */
 }
 
+/* container scroll */
 .menu-scroll {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 0 1rem;
   overflow-x: auto;
-}
-
-.menu-scroll a {
-  color: #ecfdf5;
-  font-weight: 600;
-  padding: 0.75rem 0;
   white-space: nowrap;
-  transition: color 0.2s ease;
 }
 
-.menu-scroll a:hover {
+/* UL */
+.menu-desktop {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* remove bullets */
+.menu-desktop li {
+  list-style: none;
+  flex-shrink: 0;
+}
+
+/* ITEM (equivalente ao .nav-item do Vue) */
+.menu-desktop li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  color: #ecfdf5;
+  white-space: nowrap;
+  transition: background-color 0.3s, color 0.2s;
+}
+
+/* hover */
+.menu-desktop li a:hover {
+  background: rgba(167, 243, 208, 0.15);
   color: #a7f3d0;
+}
+
+/* scrollbar (opcional, igual Vue) */
+.menu-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
 }
 
 /* ===========================
@@ -159,28 +211,38 @@
 /* ===========================
    TICKER
 =========================== */
+/* TICKER */
 .ticker-bar {
   display: flex;
   align-items: center;
   gap: 1rem;
+  background: var(--green-dark);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  overflow: hidden;
 }
 
 .ticker-label {
   background: #047857;
-  color: white;
+  color: #fefefe;
+  font-weight: 700;
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   font-size: 0.75rem;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .ticker-wrapper {
   overflow: hidden;
   flex: 1;
+  position: relative;
 }
 
 .ticker-track {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   gap: 3rem;
   white-space: nowrap;
   animation: ticker-scroll 20s linear infinite;
@@ -189,11 +251,9 @@
 .ticker-item {
   font-size: 0.875rem;
   color: #d1fae5;
+  opacity: 0.95;
 }
 
-/* ===========================
-   ANIMAÇÕES
-=========================== */
 @keyframes ticker-scroll {
   from {
     transform: translateX(0);

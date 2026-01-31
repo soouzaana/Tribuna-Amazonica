@@ -47,20 +47,30 @@
 
     <!-- LOGO / BUSCA / HAMBURGUER -->
     <div class="bg-white text-green-dark">
-      <div class="header-main flex items-center justify-between px-4 py-4">
+      <div class="header-main">
 
         <!-- LOGO -->
-        <div>
-          <p class="text-4xl font-bold"><?php bloginfo('name'); ?></p>
+        <div class="py-2">
+          <p class="text-4xl md:text-4xl sm:text-2xl font-bold">Tribuna Amazônica</p>
           <p class="text-sm font-semibold opacity-80 hidden sm:block">
-            <?php bloginfo('description'); ?>
+            Análise Jurídica, Doutrina e Julgados do Norte
           </p>
         </div>
 
         <!-- BUSCA DESKTOP -->
-        <div class="search-box hidden md:block">
-          <?php get_search_form(); ?>
-        </div>
+        <form role="search" method="get" class="search-box" action="<?php echo esc_url(home_url('/')); ?>">
+          <label class="search-input">
+            <span class="search-icon">
+              <?php theme_icon('search', 'icon'); ?>
+            </span>
+            <input
+              type="search"
+              class="search-field"
+              placeholder="Buscar..."
+              value="<?php echo get_search_query(); ?>"
+              name="s" />
+          </label>
+        </form>
 
         <!-- HAMBURGUER -->
         <button
@@ -73,14 +83,15 @@
     </div>
 
     <!-- MENU DESKTOP -->
+    <!-- MENU DESKTOP -->
     <div class="menu-div bg-green-dark">
-      <nav class="menu-scroll hidden md:flex gap-6 px-4 py-3">
+      <nav class="menu-scroll hidden md:flex">
         <?php
         wp_nav_menu([
           'theme_location' => 'menu-principal',
           'container'      => false,
-          'items_wrap'     => '%3$s',
-          'menu_class'     => 'hidden'
+          'menu_class'     => 'menu-desktop',
+          'depth'          => 1
         ]);
         ?>
       </nav>
@@ -122,12 +133,29 @@
       <div class="ticker-wrapper overflow-hidden">
         <div class="ticker-track flex gap-8 animate-marquee">
           <?php
-          $ticker = new WP_Query(['posts_per_page' => 5]);
+          // Pega as 5 últimas headlines
+          $ticker = new WP_Query([
+            'posts_per_page' => 5,
+            'post_status'    => 'publish',
+          ]);
+
+          // Armazena as headlines
+          $headlines = [];
+
           while ($ticker->have_posts()) :
             $ticker->the_post();
-            echo '<span class="ticker-item whitespace-nowrap">' . esc_html(get_the_title()) . '</span>';
+            $headlines[] = get_the_title();
           endwhile;
+
           wp_reset_postdata();
+
+          // Duplica para criar loop infinito
+          $headlines = array_merge($headlines, $headlines);
+
+          // Renderiza
+          foreach ($headlines as $headline) :
+            echo '<span class="ticker-item whitespace-nowrap">' . esc_html($headline) . '</span>';
+          endforeach;
           ?>
         </div>
       </div>
