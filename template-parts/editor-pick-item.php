@@ -5,6 +5,10 @@ if (!$img) {
 }
 
 $date = get_the_date('d M Y');
+
+// Categoria
+$categories = get_the_category();
+$category   = !empty($categories) ? $categories[0] : null;
 ?>
 
 <article class="editor-pick group">
@@ -13,6 +17,15 @@ $date = get_the_date('d M Y');
   </div>
 
   <div class="editor-content">
+
+    <?php if ($category) : ?>
+      <span class="editor-category">
+        <a href="<?php echo esc_url(get_category_link($category)); ?>">
+          <?php echo esc_html($category->name); ?>
+        </a>
+      </span>
+    <?php endif; ?>
+
     <h3 class="editor-title">
       <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
     </h3>

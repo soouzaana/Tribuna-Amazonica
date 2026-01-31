@@ -33,6 +33,22 @@
   gap: 0.25rem;
 }
 
+.editor-category {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #10b981; /* mesmo verde do hover */
+  letter-spacing: 0.05em;
+}
+
+.editor-category a {
+  color: inherit;
+}
+
+.editor-category a:hover {
+  text-decoration: underline;
+}
+
 .editor-title {
   font-size: 0.95rem;
   font-weight: 600;

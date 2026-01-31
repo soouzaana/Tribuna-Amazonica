@@ -23,6 +23,9 @@
   <!-- opiniao e doutrina -->
   <?php get_template_part('template-parts/opinion-doutrine'); ?>
 
+  <!-- mais lidas -->
+  <?php get_template_part('template-parts/most-read'); ?>
+
 </main>
 
 <?php get_footer(); ?>
