@@ -71,6 +71,28 @@ function meu_tema_assets()
     '1.0'
   );
 
+  /* ===== HOME SECTION CSS ===== */
+  wp_enqueue_style(
+    'meu-tema-home-section',
+    get_template_directory_uri() . '/assets/src/css/home-section.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/home-section.css')
+  );
+
+  wp_enqueue_style(
+    'meu-tema-news-card',
+    get_template_directory_uri() . '/assets/src/css/news-card.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/news-card.css')
+  );
+
+  wp_enqueue_style(
+    'meu-tema-editor-pick',
+    get_template_directory_uri() . '/assets/src/css/editor-pick.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/editor-pick.css')
+  );
+
   require get_template_directory() . '/inc/icons.php';
 }
 
