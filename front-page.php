@@ -17,6 +17,8 @@
   <!-- newsletter -->
   <?php get_template_part('template-parts/newsletter'); ?>
 
+  <!-- video section -->
+  <?php get_template_part('template-parts/section-videos'); ?>
 </main>
 
 <?php get_footer(); ?>

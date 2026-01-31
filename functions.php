@@ -109,6 +109,13 @@ function meu_tema_assets()
     filemtime(get_template_directory() . '/assets/src/css/newsletter.css')
   );
 
+  /* ===== VIDEO SECTION CSS ===== */
+  wp_enqueue_style(
+    'meu-tema-section-videos',
+    get_template_directory_uri() . '/assets/src/css/section-videos.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/section-videos.css')
+  );
 
   require get_template_directory() . '/inc/icons.php';
 }
