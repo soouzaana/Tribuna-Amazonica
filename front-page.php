@@ -11,6 +11,9 @@
   <!-- jurisprudencia e decisões -->
   <?php get_template_part('template-parts/law'); ?>
 
+  <!-- direito administrativo -->
+  <?php get_template_part('template-parts/administrative'); ?>
+
 </main>
 
 <?php get_footer(); ?>

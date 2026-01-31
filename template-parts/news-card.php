@@ -20,12 +20,14 @@ $live = get_post_meta(get_the_ID(), 'live', true) == '1';
     <img src="<?php echo esc_url($img); ?>" alt="<?php the_title_attribute(); ?>"
       class="image w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
 
+    <!-- BADGE CATEGORIA -->
     <?php if ($badge) : ?>
       <span class="absolute top-2 right-2 bg-emerald-500/60 text-white text-xs font-semibold px-2 py-1 rounded-full">
         <?php echo esc_html($badge); ?>
       </span>
     <?php endif; ?>
 
+    <!-- BADGE LIVE -->
     <?php if ($live) : ?>
       <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
         <svg class="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 8 8">
@@ -34,6 +36,7 @@ $live = get_post_meta(get_the_ID(), 'live', true) == '1';
         Live
       </span>
 
+      <!-- BOTÃO PLAY CENTRAL -->
       <button class="absolute inset-0 m-auto w-12 h-12 rounded-full flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
         <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M5 3v18l15-9z" />
