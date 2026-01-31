@@ -28,6 +28,9 @@
 
   <!-- colunistas -->
   <?php get_template_part('template-parts/section-colunists'); ?>
+
+  <!-- instagram -->
+  <?php get_template_part('template-parts/section-instagram'); ?>
 </main>
 
 <?php get_footer(); ?>
