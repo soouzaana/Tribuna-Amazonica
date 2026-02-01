@@ -38,7 +38,7 @@ $live = get_post_meta(get_the_ID(), 'live', true) == '1';
 
       <!-- BOTÃO PLAY CENTRAL -->
       <button class="absolute inset-0 m-auto w-12 h-12 rounded-full flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 text-green-700" fill="currentColor" viewBox="0 0 24 24">
           <path d="M5 3v18l15-9z" />
         </svg>
       </button>

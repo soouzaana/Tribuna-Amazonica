@@ -1,31 +1,30 @@
 <?php
+
+/**
+ * Layout: Grid
+ * Espera receber:
+ * - WP_Query em $args['query']
+ * - colunas opcionais em $args['cols']
+ */
+
 $query = $args['query'] ?? null;
-if (!$query) return;
+$cols  = $args['cols'] ?? 'sm:grid-cols-2 lg:grid-cols-3';
+
+if (!$query || !$query->have_posts()) {
+  return;
+}
 ?>
 
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  <?php while ($query->have_posts()): $query->the_post(); ?>
-    <article class="bg-white rounded-xl shadow overflow-hidden">
+<div class="grid gap-6 <?php echo esc_attr($cols); ?>">
+  <?php
+  while ($query->have_posts()) :
+    $query->the_post();
 
-      <?php if (has_post_thumbnail()): ?>
-        <a href="<?php the_permalink(); ?>">
-          <?php the_post_thumbnail('medium', [
-            'class' => 'w-full h-48 object-cover'
-          ]); ?>
-        </a>
-      <?php endif; ?>
+    // Card unitário (modelo NewsCard)
+    get_template_part('template-parts/news-card');
 
-      <div class="p-4 space-y-2">
-        <h3 class="font-bold text-lg leading-tight">
-          <a href="<?php the_permalink(); ?>">
-            <?php the_title(); ?>
-          </a>
-        </h3>
+  endwhile;
 
-        <p class="text-sm text-gray-600">
-          <?php echo wp_trim_words(get_the_excerpt(), 18); ?>
-        </p>
-      </div>
-    </article>
-  <?php endwhile; ?>
+  wp_reset_postdata();
+  ?>
 </div>
