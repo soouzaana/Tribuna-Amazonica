@@ -1,44 +1,25 @@
-<?php get_header(); ?>
+<?php
+get_header();
+?>
 
 <main class="p-6 space-y-10 bg-gray-50">
 
-  <!-- destaques -->
-  <?php get_template_part('template-parts/featured'); ?>
+  <?php
+  for ($i = 1; $i <= 3; $i++) :
+    if (!get_field("secao_{$i}_ativa")) continue;
 
-  <!-- home section -->
-  <?php get_template_part('template-parts/home-section'); ?>
+    set_query_var('slot', $i);
+    get_template_part(
+      'template-parts/home-slot',
+      null,
+      ['index' => 1]
+    );
+    get_template_part('template-parts/home-slot', null, ['index' => 2]);
+    get_template_part('template-parts/home-slot', null, ['index' => 3]);
 
-  <!-- jurisprudencia e decisões -->
-  <?php get_template_part('template-parts/law'); ?>
+  endfor;
+  ?>
 
-  <!-- direito administrativo -->
-  <?php get_template_part('template-parts/administrative'); ?>
-
-  <!-- newsletter -->
-  <?php get_template_part('template-parts/newsletter'); ?>
-
-  <!-- video section -->
-  <?php get_template_part('template-parts/section-videos'); ?>
-
-  <!-- opiniao e doutrina -->
-  <?php get_template_part('template-parts/opinion-doutrine'); ?>
-
-  <!-- mais lidas -->
-  <?php get_template_part('template-parts/most-read'); ?>
-
-  <!-- colunistas -->
-  <?php get_template_part('template-parts/section-colunists'); ?>
-
-  <!-- instagram -->
-  <?php get_template_part('template-parts/section-instagram'); ?>
-
-  <!-- lifestyle e wellness -->
-  <?php get_template_part('template-parts/lifestyle-wellness'); ?>
-
-  <!-- patrocinador -->
-  <?php get_template_part('template-parts/backing'); ?>
 </main>
 
 <?php get_footer(); ?>
-
-<script src="https://cdn.tailwindcss.com"></script>
