@@ -36,16 +36,20 @@ $query = new WP_Query([
 if (!$query->have_posts()) return;
 ?>
 
-<section class="videos-section space-y-6">
+<section class="videos-section !bg-slate-900 text-white p-6 rounded-2xl space-y-6">
 
   <!-- HEADER -->
   <header class="flex justify-between items-baseline">
     <?php if ($titulo): ?>
-      <h2><?= esc_html($titulo); ?></h2>
+      <h2 class="text-xl font-bold">
+        <?= esc_html($titulo); ?>
+      </h2>
     <?php endif; ?>
 
     <?php if ($ver_mais): ?>
-      <a href="<?= esc_url(get_term_link($categoria)); ?>">
+      <a
+        href="<?= esc_url(get_term_link($categoria)); ?>"
+        class="text-emerald-400 font-medium hover:text-emerald-300 transition">
         Ver mais
       </a>
     <?php endif; ?>
@@ -66,7 +70,12 @@ if (!$query->have_posts()) return;
     </div>
 
     <!-- LISTA -->
-    <div class="videos-list">
+    <div class="videos-list
+  [&_.editor-title]:text-white
+  [&_.editor-date]:text-white/60
+  [&_.editor-pick:hover_.editor-title]:text-emerald-400
+">
+
       <?php
       get_template_part(
         'template-parts/layouts/layout-list',
