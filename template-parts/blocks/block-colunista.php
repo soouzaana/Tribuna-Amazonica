@@ -9,12 +9,12 @@ $query = new WP_Query([
 ?>
 
 <?php if ($query->have_posts()): ?>
-  <section class="section-colunistas">
-    <header class="section-header">
-      <h2>Nossos Colunistas</h2>
+  <section class="mx-auto py-8 px-4">
+    <header class="section-header mb-6 text-center">
+      <h2 class="text-2xl font-bold text-gray-900">Nossos Colunistas</h2>
     </header>
 
-    <div class="colunistas-grid">
+    <div class="colunistas-grid flex flex-col gap-4">
       <?php
       while ($query->have_posts()):
         $query->the_post();

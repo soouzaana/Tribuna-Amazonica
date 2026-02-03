@@ -6,64 +6,28 @@ if (!$post_id) return;
 
 $nome  = get_the_title($post_id);
 $area  = get_field('colunist_area', $post_id);
-$bio   = get_field('colunist_description', $post_id);
 
-$cta_texto = get_field('cta_texto', $post_id);
-$cta_link  = get_field('cta_link', $post_id);
+// Caminho da imagem default
+$default_avatar = get_template_directory_uri() . '/assets/images/avatar-default.jpg';
 ?>
 
-<article class="colunist-card">
+<a href="<?= esc_url(get_permalink($post_id)); ?>" class="flex gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group">
+  <!-- Avatar -->
+  <img
+    src="<?= has_post_thumbnail($post_id) ? get_the_post_thumbnail_url($post_id, 'thumbnail') : esc_url($default_avatar); ?>"
+    alt="<?= esc_attr($nome); ?>"
+    class="w-12 h-12 rounded-full object-cover flex-shrink-0">
 
-  <div class="colunist-avatar">
-    <?php
-    if (has_post_thumbnail($post_id)) {
-      echo get_the_post_thumbnail($post_id, 'medium');
-    }
-    ?>
-  </div>
-
-  <div class="colunist-content">
-    <h3 class="colunist-name"><?= esc_html($nome); ?></h3>
+  <!-- Conteúdo -->
+  <div class="flex-1 min-w-0">
+    <h4 class="text-sm font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors truncate">
+      <?= esc_html($nome); ?>
+    </h4>
 
     <?php if ($area): ?>
-      <span class="colunist-area"><?= esc_html($area); ?></span>
+      <p class="text-xs text-gray-500 truncate">
+        <?= esc_html($area); ?>
+      </p>
     <?php endif; ?>
-
-    <?php if ($bio): ?>
-      <p class="colunist-bio"><?= esc_html($bio); ?></p>
-    <?php endif; ?>
-
-    <div class="colunist-actions">
-
-      <?php
-      $redes = [
-        'colunist_instagram' => 'Instagram',
-        'colunist_twitter'   => 'Twitter',
-        'colunist_linkedin'  => 'LinkedIn',
-      ];
-
-      foreach ($redes as $field => $label) :
-        $url = get_field($field, $post_id);
-        if (!$url) continue;
-      ?>
-        <a
-          href="<?= esc_url($url); ?>"
-          target="_blank"
-          rel="noopener"
-          class="social-link social-<?= esc_attr($field); ?>">
-          <?= esc_html($label); ?>
-        </a>
-      <?php endforeach; ?>
-
-      <?php if ($cta_texto && $cta_link): ?>
-        <a
-          href="<?= esc_url($cta_link); ?>"
-          class="btn btn-outline">
-          <?= esc_html($cta_texto); ?>
-        </a>
-      <?php endif; ?>
-
-    </div>
   </div>
-
-</article>
+</a>
