@@ -21,7 +21,7 @@ $colunists = new WP_Query([
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 pt-3">
       <?php if ($colunists->have_posts()) : ?>
         <?php while ($colunists->have_posts()) : $colunists->the_post(); ?>
-          <?php get_template_part('template-parts/colunist-card'); ?>
+          <?php get_template_part('template-parts/card-colunist'); ?>
         <?php endwhile; ?>
         <?php wp_reset_postdata(); ?>
       <?php endif; ?>

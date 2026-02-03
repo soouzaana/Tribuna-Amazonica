@@ -1,4 +1,9 @@
 <?php
+
+add_action('admin_notices', function () {
+  echo '<div class="notice notice-success"><p>functions.php carregado</p></div>';
+});
+
 if (!defined('ABSPATH')) exit;
 
 function permitir_svg_upload($mimes)
@@ -235,5 +240,5 @@ function site_config($field)
 }
 
 
-
+add_action('init', 'create_colunistas_cpt');
 add_action('init', 'create_sponsors_cpt');

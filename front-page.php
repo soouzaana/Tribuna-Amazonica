@@ -4,6 +4,8 @@ get_header();
 
 <main class="p-6 space-y-10 bg-gray-50">
 
+  <?php get_template_part('template-parts/blocks/block-colunista'); ?>
+
   <?php
   for ($i = 1; $i <= 3; $i++) {
     get_template_part(

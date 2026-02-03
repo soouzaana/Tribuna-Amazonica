@@ -85,6 +85,4 @@ $variant = get_field('newsletter_variant', $config_id) ?: 'default';
     </form>
   </div>
 
-
-
 <?php endif; ?>
