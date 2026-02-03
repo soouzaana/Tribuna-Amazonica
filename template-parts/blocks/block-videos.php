@@ -1,12 +1,11 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$query = new WP_Query([
-  'post_type' => 'post',
-  'posts_per_page' => 5,
-]);
-
-
+/**
+ * ============================
+ * CONTEXTO HOME (ACF FREE)
+ * ============================
+ */
 $home = get_page_by_path('home');
 if (!$home) return;
 $home_id = $home->ID;
@@ -22,6 +21,11 @@ $categoria = get_field('videos_categoria', $home_id);
 
 if (!$categoria instanceof WP_Term) return;
 
+/**
+ * ============================
+ * QUERY ÚNICA
+ * ============================
+ */
 $query = new WP_Query([
   'post_type'      => 'post',
   'posts_per_page' => $qtd,
@@ -34,8 +38,11 @@ if (!$query->have_posts()) return;
 
 <section class="videos-section space-y-6">
 
+  <!-- HEADER -->
   <header class="flex justify-between items-baseline">
-    <h2><?= esc_html($titulo); ?></h2>
+    <?php if ($titulo): ?>
+      <h2><?= esc_html($titulo); ?></h2>
+    <?php endif; ?>
 
     <?php if ($ver_mais): ?>
       <a href="<?= esc_url(get_term_link($categoria)); ?>">
@@ -44,16 +51,31 @@ if (!$query->have_posts()) return;
     <?php endif; ?>
   </header>
 
-  <div class="videos-grid">
-    <?php while ($query->have_posts()): $query->the_post(); ?>
+  <!-- LAYOUT -->
+  <div class="videos-layout grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- DESTAQUE -->
+    <div class="videos-highlight">
       <?php
       get_template_part(
-        'template-parts/cards/video-item',
+        'template-parts/layouts/layout-destaque',
         null,
-        ['post_id' => get_the_ID()]
+        ['query' => $query]
       );
       ?>
-    <?php endwhile; ?>
+    </div>
+
+    <!-- LISTA -->
+    <div class="videos-list">
+      <?php
+      get_template_part(
+        'template-parts/layouts/layout-list',
+        null,
+        ['query' => $query]
+      );
+      ?>
+    </div>
+
   </div>
 
 </section>
