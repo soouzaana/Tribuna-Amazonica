@@ -28,6 +28,8 @@ get_header();
     <?php get_template_part('template-parts/blocks/block-instagram'); ?>
   <?php endif; ?>
 
+  <?get_template_part('template-parts/blocks/block-sponsors');?>
+
 </main>
 
 <?php get_footer(); ?>
