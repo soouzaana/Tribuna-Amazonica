@@ -6,6 +6,8 @@ get_header();
 
   <?php get_template_part('template-parts/blocks/block-colunista'); ?>
 
+  <? get_template_part('template-parts/blocks/block-videos'); ?>
+
   <?php
   for ($i = 1; $i <= 3; $i++) {
     get_template_part(
