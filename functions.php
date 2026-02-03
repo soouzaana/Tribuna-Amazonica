@@ -184,7 +184,6 @@ function create_colunistas_cpt()
 
   register_post_type('colunistas', $args);
 }
-add_action('init', 'create_colunistas_cpt');
 
 function create_sponsors_cpt()
 {
@@ -208,4 +207,33 @@ function create_sponsors_cpt()
 
   register_post_type('sponsors', $args);
 }
+
+function get_config_page_id()
+{
+  static $config_id = null;
+
+  if ($config_id !== null) {
+    return $config_id;
+  }
+
+  $page = get_page_by_path('configuracoes-do-site');
+
+  if (!$page) {
+    return null;
+  }
+
+  $config_id = $page->ID;
+  return $config_id;
+}
+
+function site_config($field)
+{
+  $page = get_page_by_path('configuracoes-do-site');
+  if (!$page) return null;
+
+  return get_field($field, $page->ID);
+}
+
+
+
 add_action('init', 'create_sponsors_cpt');
