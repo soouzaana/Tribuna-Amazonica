@@ -68,6 +68,14 @@ function meu_tema_assets()
     '1.0'
   );
 
+  wp_enqueue_style(
+    'meu-tema-section-title',
+    get_template_directory_uri() . '/assets/src/css/section-title.css',
+    [],
+    filemtime(get_template_directory() . '/assets/src/css/section-title.css')
+  );
+
+
   /* ===== FEATURED CSS ===== */
   wp_enqueue_style(
     'meu-tema-featured',

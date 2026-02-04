@@ -10,8 +10,8 @@ $query = new WP_Query([
 
 <?php if ($query->have_posts()): ?>
   <section class="mx-auto py-8 px-4">
-    <header class="section-header mb-6 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">Nossos Colunistas</h2>
+    <header class="section-header mb-6">
+      <h2 class="section-title">Nossos Colunistas</h2>
     </header>
 
     <div class="colunistas-grid flex flex-col gap-4">

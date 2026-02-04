@@ -65,9 +65,16 @@ if ($layout === 'split') {
 ?>
 
   <section class="space-y-6">
-    <?php if ($titulo): ?>
-      <h2 class="text-2xl font-bold"><?php echo esc_html($titulo); ?></h2>
-    <?php endif; ?>
+    <?php
+    get_template_part(
+      'template-parts/ui/section-title',
+      null,
+      [
+        'title' => $titulo,
+        'tag'   => 'h2',
+      ]
+    );
+    ?>
 
     <?php
     get_template_part(
@@ -126,9 +133,16 @@ if (!$query->have_posts()) return;
 ?>
 
 <section class="space-y-6">
-  <?php if ($titulo): ?>
-    <h2 class="text-2xl font-bold"><?php echo esc_html($titulo); ?></h2>
-  <?php endif; ?>
+  <?php
+  get_template_part(
+    'template-parts/ui/section-title',
+    null,
+    [
+      'title' => $titulo,
+      'tag'   => 'h2',
+    ]
+  );
+  ?>
 
   <?php
   get_template_part(
