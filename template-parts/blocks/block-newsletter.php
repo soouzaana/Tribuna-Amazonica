@@ -54,7 +54,7 @@ $variant = get_field('newsletter_variant', $config_id) ?: 'default';
       Newsletter
     </h3>
 
-    <form class="newsletter-form space-y-4" data-variant="sidebar">
+    <form class="space-y-4 px-9" data-variant="sidebar">
       <!-- Email -->
       <input
         type="email"
@@ -64,7 +64,7 @@ $variant = get_field('newsletter_variant', $config_id) ?: 'default';
         class="block w-full bg-white border border-emerald-200 focus:border-emerald-500 h-9 text-sm rounded-md px-3" />
 
       <!-- Checkbox e label em bloco -->
-      <div class="block">
+      <div class="flex gap-1">
         <input
           type="checkbox"
           name="agreed"
@@ -77,11 +77,13 @@ $variant = get_field('newsletter_variant', $config_id) ?: 'default';
       </div>
 
       <!-- Botão -->
-      <button
-        type="submit"
-        class="block w-full bg-emerald-700 hover:bg-emerald-800 h-9 text-sm text-white font-semibold rounded-md transition-colors">
-        Assinar
-      </button>
+      <div class="flex items-center">
+        <button
+          type="submit"
+          class="bg-emerald-700 hover:bg-emerald-800 w-1/4 h-9 text-sm text-white font-semibold rounded-md transition-colors mx-auto">
+          Assinar
+        </button>
+      </div>
     </form>
   </div>
 
