@@ -53,11 +53,18 @@ $span_secondary = 'md:col-span-1';
 
   <!-- COLUNA PRINCIPAL -->
   <div class="<?php echo esc_attr("$order_primary $span_primary"); ?>">
-    <?php if ($title_primary): ?>
-      <h3 class="text-xl font-semibold mb-4">
-        <?php echo esc_html($title_primary); ?>
-      </h3>
-    <?php endif; ?>
+    <?php
+    if ($title_primary) {
+      get_template_part(
+        'template-parts/ui/section-title',
+        null,
+        [
+          'title' => $title_primary,
+          'tag'   => 'h3',
+        ]
+      );
+    }
+    ?>
 
     <?php
     get_template_part(
@@ -70,11 +77,18 @@ $span_secondary = 'md:col-span-1';
 
   <!-- COLUNA SECUNDÁRIA -->
   <aside class="<?php echo esc_attr("$order_secondary $span_secondary"); ?>">
-    <?php if ($title_secondary): ?>
-      <h3 class="text-lg font-semibold mb-4">
-        <?php echo esc_html($title_secondary); ?>
-      </h3>
-    <?php endif; ?>
+    <?php
+    if ($title_secondary) {
+      get_template_part(
+        'template-parts/ui/section-title',
+        null,
+        [
+          'title' => $title_secondary,
+          'tag'   => 'h3',
+        ]
+      );
+    }
+    ?>
 
     <?php
     get_template_part(
