@@ -1,13 +1,5 @@
 <?php
-
-/**
- * Layout: Split (Coluna Dupla)
- * Espera em $args:
- * - primary   => ['query' => WP_Query, 'layout' => string, 'title' => string]
- * - secondary => ['query' => WP_Query, 'layout' => string, 'title' => string]
- * - ratio => '2-1' | '1-1'
- * - reverse_mobile => bool
- */
+if (!defined('ABSPATH')) exit;
 
 $primary   = $args['primary'] ?? null;
 $secondary = $args['secondary'] ?? null;
@@ -17,10 +9,12 @@ if (!$primary || !$secondary) return;
 $query_primary   = $primary['query'] ?? null;
 $layout_primary  = $primary['layout'] ?? 'grid';
 $title_primary   = $primary['title'] ?? null;
+$term_primary    = $primary['term'] ?? null;
 
 $query_secondary  = $secondary['query'] ?? null;
 $layout_secondary = $secondary['layout'] ?? 'list';
 $title_secondary  = $secondary['title'] ?? null;
+$term_secondary   = $secondary['term'] ?? null;
 
 if (
   !$query_primary instanceof WP_Query ||
@@ -61,6 +55,9 @@ $span_secondary = 'md:col-span-1';
         [
           'title' => $title_primary,
           'tag'   => 'h3',
+          'link'  => $term_primary instanceof WP_Term
+            ? get_category_link($term_primary->term_id)
+            : null,
         ]
       );
     }
@@ -85,6 +82,9 @@ $span_secondary = 'md:col-span-1';
         [
           'title' => $title_secondary,
           'tag'   => 'h3',
+          'link'  => $term_secondary instanceof WP_Term
+            ? get_category_link($term_secondary->term_id)
+            : null,
         ]
       );
     }

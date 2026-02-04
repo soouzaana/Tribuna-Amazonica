@@ -81,34 +81,43 @@ if ($with_colunistas): ?>
 
       <section class="space-y-6">
         <?php
-        get_template_part(
-          'template-parts/ui/section-title',
-          null,
-          [
-            'title' => $titulo,
-            'tag'   => 'h2',
-          ]
-        );
+      $mostrar_ver_mais = get_field("secao_{$index}_mostrar_ver_mais");
 
-        get_template_part(
-          'template-parts/layouts/layout-split',
-          null,
-          [
-            'primary' => [
-              'query'  => $query_primary,
-              'layout' => $layout_primary,
-              'title'  => $title_primary,
-            ],
-            'secondary' => [
-              'query'  => $query_secondary,
-              'layout' => $layout_secondary,
-              'title'  => $title_secondary,
-            ],
-            'ratio'          => get_field("secao_{$index}_split_proporcao") ?: '2-1',
-            'reverse_mobile' => get_field("secao_{$index}_split_reverse_mobile"),
-          ]
-        );
-        ?>
+      get_template_part(
+        'template-parts/ui/section-title',
+        null,
+        [
+          'title' => $titulo,
+          'tag'   => 'h2',
+          'link'  => $mostrar_ver_mais
+            ? get_category_link($categoria->term_id)
+            : null,
+        ]
+      );
+
+
+      $mostrar_primary   = get_field("secao_{$index}_split_primary_mostrar_ver_mais");
+      $mostrar_secondary = get_field("secao_{$index}_split_secondary_mostrar_ver_mais");
+
+      get_template_part(
+        'template-parts/layouts/layout-split',
+        null,
+        [
+          'primary' => [
+            'query'  => $query_primary,
+            'layout' => $layout_primary,
+            'title'  => $title_primary,
+            'term'   => $mostrar_primary ? $primary_term : null,
+          ],
+          'secondary' => [
+            'query'  => $query_secondary,
+            'layout' => $layout_secondary,
+            'title'  => $title_secondary,
+            'term'   => $mostrar_secondary ? $secondary_term : null,
+          ],
+        ]
+      );
+    ?>
       </section>
 
     <?php
