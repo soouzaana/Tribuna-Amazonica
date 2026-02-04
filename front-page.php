@@ -4,12 +4,19 @@ get_header();
 
 <main class="p-6 space-y-10 bg-gray-50">
 
-  <?php get_template_part('template-parts/blocks/block-colunista'); ?>
-
-  <? get_template_part('template-parts/blocks/block-videos'); ?>
-
   <?php
-  for ($i = 1; $i <= 3; $i++) {
+  // SEÇÃO 1 — sempre com colunistas
+  get_template_part(
+    'template-parts/home-slot',
+    null,
+    [
+      'index' => 1,
+      'with_colunistas' => true
+    ]
+  );
+
+  // SEÇÕES NORMAIS
+  for ($i = 2; $i <= 3; $i++) {
     get_template_part(
       'template-parts/home-slot',
       null,
@@ -17,6 +24,8 @@ get_header();
     );
   }
   ?>
+
+  <?php get_template_part('template-parts/blocks/block-videos'); ?>
 
   <?php if (site_config('mostrar_newsletter')): ?>
     <?php get_template_part('template-parts/blocks/block-newsletter'); ?>
@@ -30,7 +39,7 @@ get_header();
     <?php get_template_part('template-parts/blocks/block-instagram'); ?>
   <?php endif; ?>
 
-  <?get_template_part('template-parts/blocks/block-sponsors');?>
+  <?php get_template_part('template-parts/blocks/block-sponsors'); ?>
 
 </main>
 
