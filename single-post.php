@@ -26,10 +26,6 @@ get_header();
 
       </article>
 
-      <?php get_template_part('template-parts/single/related'); ?>
-
-      <?php get_template_part('template-parts/single/newsletter'); ?>
-
     <?php endwhile; ?>
 
   </div>
