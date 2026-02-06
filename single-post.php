@@ -19,7 +19,10 @@ get_header();
 
         <?php get_template_part('template-parts/single/content'); ?>
 
-        <?php get_template_part('template-parts/single/share'); ?>
+        <?php get_template_part('template-parts/single/related', null, [
+          'post_id' => get_the_ID()
+        ]);
+        ?>
 
       </article>
 
@@ -32,4 +35,4 @@ get_header();
   </div>
 </main>
 
-<?php get_footer(); ?>  
+<?php get_footer(); ?>
