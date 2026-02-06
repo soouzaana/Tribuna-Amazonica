@@ -2,6 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-.test-force {
-  @apply bg-green-600 text-white p-4;
+@layer components {
+  .prose blockquote {
+    @apply bg-emerald-50 border-l-4 border-emerald-600
+           p-6 rounded-r-xl mb-8 not-italic;
+  }
+
+  .prose blockquote p {
+    @apply text-lg text-emerald-900 font-medium leading-relaxed;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold text-gray-900 mt-12 mb-4;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold text-gray-900 mt-8 mb-3;
+  }
+
+  .prose ul {
+    @apply list-disc pl-6 my-6;
+  }
+
+  .prose ol {
+    @apply list-decimal pl-6 my-6;
+  }
+
+  .prose li {
+    @apply mb-2 text-gray-700;
+  }
+
+  .prose img {
+    @apply rounded-xl shadow-md my-8;
+  }
+
+  .prose figure figcaption {
+    @apply text-sm text-gray-500 text-center mt-2;
+  }
+
+  .prose a {
+    @apply text-emerald-700 font-medium underline underline-offset-2;
+  }
+
+  .prose a:hover {
+    @apply text-emerald-800;
+  }
+
+  .prose pre {
+    @apply bg-gray-900 text-gray-100 rounded-xl p-6 my-8 overflow-x-auto;
+  }
+
+  .prose code {
+    @apply bg-gray-100 text-emerald-700 px-1.5 py-0.5 rounded;
+  }
+}
+
+@layer components {
+  .prose p {
+    @apply mb-6;
+  }
+
+  .prose p:last-child {
+    @apply mb-0;
+  }
 }

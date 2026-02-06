@@ -20,11 +20,27 @@ if (!$query->have_posts()) return;
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <?php while ($query->have_posts()) : $query->the_post(); ?>
-      <article>
+      <article class="group">
         <a href="<?php the_permalink(); ?>">
-          <h3 class="font-semibold text-gray-900 hover:text-emerald-700">
+
+          <?php if (has_post_thumbnail()): ?>
+            <div class="relative rounded-xl overflow-hidden mb-4 aspect-[16/10]">
+              <?php the_post_thumbnail('medium', [
+                'class' => 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+              ]); ?>
+            </div>
+          <?php endif; ?>
+
+          <h3 class="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 mb-2">
             <?php the_title(); ?>
           </h3>
+
+          <div class="flex items-center gap-3 text-sm text-gray-500">
+            <span><?php echo get_the_date(); ?></span>
+            <span>|</span>
+            <span><?php comments_number('0 Comentários', '1 Comentário', '% Comentários'); ?></span>
+          </div>
+
         </a>
       </article>
     <?php endwhile; ?>
