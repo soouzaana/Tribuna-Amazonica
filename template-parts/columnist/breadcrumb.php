@@ -1,4 +1,4 @@
-<?php if (!is_singular('columnist')) return; ?>
+<?php if (!is_singular('colunistas')) return; ?>
 
 <div class="bg-white border-b">
   <div class="max-w-7xl mx-auto px-4 py-4">
@@ -7,7 +7,7 @@
         Home
       </a>
       <span>/</span>
-      <a href="<?php echo esc_url(get_post_type_archive_link('columnist')); ?>" class="hover:text-emerald-700 transition-colors">
+      <a href="<?php echo esc_url(get_post_type_archive_link('colunistas')); ?>" class="hover:text-emerald-700 transition-colors">
         Colunistas
       </a>
       <span>/</span>
