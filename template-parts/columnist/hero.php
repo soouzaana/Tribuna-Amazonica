@@ -1,17 +1,26 @@
 <?php
-$area        = get_field('colunist_area');
-$description = get_field('colunist_description');
-$image       = get_field('colunist_image');
+$area        = get_field('colunist_area') ?: null;
+$description = get_field('colunist_description') ?: null;
+
+$image_id = get_field('colunist_image');
+
+$image_url = null;
+$image_alt = null;
+
+if ($image_id) {
+  $image_url = wp_get_attachment_image_url($image_id, 'medium');
+  $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+}
 ?>
 
 <section class="bg-gradient-to-br from-emerald-800 to-emerald-600 text-white py-16">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
 
-      <?php if ($image): ?>
+      <?php if ($image_url): ?>
         <img
-          src="<?php echo esc_url($image['sizes']['medium']); ?>"
-          alt="<?php echo esc_attr($image['alt'] ?: get_the_title()); ?>"
+          src="<?= esc_url($image_url); ?>"
+          alt="<?= esc_attr($image_alt ?: get_the_title()); ?>"
           class="w-48 h-48 rounded-2xl object-cover ring-4 ring-white/30 shadow-2xl">
       <?php endif; ?>
 
