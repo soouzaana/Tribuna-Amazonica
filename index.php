@@ -1,7 +1,6 @@
 <?php
 get_header();
 ?>
-
 <main>
   <h1>INDEX FALLBACK</h1>
 
