@@ -171,29 +171,6 @@ function handle_newsletter_signup()
   exit;
 }
 
-function create_colunistas_cpt()
-{
-  $labels = [
-    'name' => 'Colunistas',
-    'singular_name' => 'Colunista',
-    'add_new_item' => 'Adicionar Colunista',
-    'edit_item' => 'Editar Colunista',
-    'all_items' => 'Todos os Colunistas',
-  ];
-
-  $args = [
-    'label' => 'Colunistas',
-    'labels' => $labels,
-    'public' => true,
-    'has_archive' => true,
-    'menu_position' => 5,
-    'supports' => ['title', 'editor', 'thumbnail'],
-    'show_in_rest' => true,
-  ];
-
-  register_post_type('colunistas', $args);
-}
-
 function create_sponsors_cpt()
 {
   $labels = [
@@ -243,6 +220,4 @@ function site_config($field)
   return get_field($field, $page->ID);
 }
 
-
-add_action('init', 'create_colunistas_cpt');
 add_action('init', 'create_sponsors_cpt');
