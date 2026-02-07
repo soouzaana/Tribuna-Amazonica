@@ -1,9 +1,5 @@
 <?php
 
-add_action('admin_notices', function () {
-  echo '<div class="notice notice-success"><p>functions.php carregado</p></div>';
-});
-
 if (!defined('ABSPATH')) exit;
 
 function permitir_svg_upload($mimes)
