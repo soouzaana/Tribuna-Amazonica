@@ -1,20 +1,35 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$post_id = $args['post_id'] ?? get_the_ID();
-if (!$post_id) return;
+// Agora o card trabalha com user_id
+$user_id = $args['user_id'] ?? null;
+if (!$user_id) return;
 
-$nome  = get_the_title($post_id);
-$area  = get_field('colunist_area', $post_id);
+$user = get_user_by('id', $user_id);
+if (!$user) return;
 
-// Caminho da imagem default
+// Dados
+$nome = $user->display_name;
+$area = get_field('colunist_area', 'user_' . $user_id);
+
+// Avatar
 $default_avatar = get_template_directory_uri() . '/assets/images/avatar-default.jpg';
+
+$image_id = get_field('colunist_image', 'user_' . $user_id);
+$image_url = $image_id
+  ? wp_get_attachment_image_url($image_id, 'thumbnail')
+  : $default_avatar;
+
+// Link para página do autor
+$profile_url = get_author_posts_url($user_id);
 ?>
 
-<a href="<?= esc_url(get_permalink($post_id)); ?>" class="flex gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group">
+<a
+  href="<?= esc_url($profile_url); ?>"
+  class="flex gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group">
   <!-- Avatar -->
   <img
-    src="<?= has_post_thumbnail($post_id) ? get_the_post_thumbnail_url($post_id, 'thumbnail') : esc_url($default_avatar); ?>"
+    src="<?= esc_url($image_url); ?>"
     alt="<?= esc_attr($nome); ?>"
     class="w-12 h-12 rounded-full object-cover flex-shrink-0">
 

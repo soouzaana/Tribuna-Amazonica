@@ -31,6 +31,7 @@ $query = new WP_Query([
   'posts_per_page' => $qtd,
   'cat'            => $categoria->term_id,
   'post_status'    => 'publish',
+  'ignore_sticky_posts'  => true,
 ]);
 
 if (!$query->have_posts()) return;

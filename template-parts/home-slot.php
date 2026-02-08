@@ -67,6 +67,7 @@ if ($with_colunistas): ?>
         'posts_per_page' => $qty_primary,
         'cat'            => $primary_term->term_id,
         'post_status'    => 'publish',
+        'ignore_sticky_posts'  => true,
       ]);
 
       $query_secondary = new WP_Query([
@@ -74,6 +75,7 @@ if ($with_colunistas): ?>
         'posts_per_page' => $qty_secondary,
         'cat'            => $secondary_term->term_id,
         'post_status'    => 'publish',
+        'ignore_sticky_posts'  => true,
       ]);
 
       if (!$query_primary->have_posts() && !$query_secondary->have_posts()) return;
@@ -146,6 +148,7 @@ if ($with_colunistas): ?>
         'posts_per_page' => $quantidade,
         'cat'            => $categoria->term_id,
         'post_status'    => 'publish',
+        'ignore_sticky_posts'  => true,
       ]);
 
       if (!$query->have_posts()) return;

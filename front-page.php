@@ -27,16 +27,18 @@ get_header();
 
   <?php get_template_part('template-parts/blocks/block-videos'); ?>
 
-  <?php if (site_config('mostrar_newsletter')): ?>
-    <?php get_template_part('template-parts/blocks/block-newsletter'); ?>
-  <?php endif; ?>
+  <?php
+  /**
+   * BLOCO COMPOSTO — Newsletter + Instagram
+   * Ele decide internamente se mostra 1 ou 2 colunas
+   */
+  if (site_config('mostrar_newsletter') || site_config('mostrar_instagram')) {
+    get_template_part('template-parts/blocks/block-news-social');
+  }
+  ?>
 
   <?php if (site_config('mostrar_cta')): ?>
     <?php get_template_part('template-parts/blocks/block-cta'); ?>
-  <?php endif; ?>
-
-  <?php if (site_config('mostrar_instagram')): ?>
-    <?php get_template_part('template-parts/blocks/block-instagram'); ?>
   <?php endif; ?>
 
   <?php get_template_part('template-parts/blocks/block-sponsors'); ?>

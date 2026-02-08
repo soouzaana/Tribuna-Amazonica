@@ -8,16 +8,17 @@ if (!$config_id) return;
  * Campos ACF
  */
 $username = get_field('instagram_username', $config_id) ?: 'tribunaamazonica';
-$variant  = get_field('instagram_variant', $config_id) ?: 'default';
+$forced_variant = get_query_var('force_variant');
+$variant = $forced_variant ?: (get_field('instagram_variant', $config_id) ?: 'default');
 
 $instagram_url = 'https://instagram.com/' . ltrim($username, '@');
 $username_clean = ltrim($username, '@');
-?>  
+?>
 
 <?php if ($variant === 'sidebar') : ?>
 
   <!-- Variante Sidebar -->
-  <div class="block block-instagram bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-5 text-center">
+  <div class="block block-instagram bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-5 text-center h-full">
     <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mb-3">
       <!-- Ícone Instagram -->
       <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
