@@ -98,8 +98,8 @@
     <!-- MENU MOBILE INLINE -->
     <div
       id="mobileMenu"
-      class="md:hidden bg-white border-t border-gray-100 hidden">
-
+      class="mobile-menu md:hidden bg-white border-t border-gray-100"
+      aria-hidden="true">
       <!-- Busca Mobile -->
       <div class="p-4">
         <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
@@ -185,11 +185,23 @@
     const toggleBtn = document.getElementById('toggleMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    toggleBtn?.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    let isOpen = false;
 
-      // alterna ícone ☰ / ✕
-      toggleBtn.textContent =
-        mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+    toggleBtn?.addEventListener('click', () => {
+      if (!isOpen) {
+        // abrir
+        mobileMenu.style.height = mobileMenu.scrollHeight + 'px';
+        mobileMenu.style.opacity = '1';
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        toggleBtn.textContent = '✕';
+      } else {
+        // fechar
+        mobileMenu.style.height = '0';
+        mobileMenu.style.opacity = '0';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        toggleBtn.textContent = '☰';
+      }
+
+      isOpen = !isOpen;
     });
   </script>

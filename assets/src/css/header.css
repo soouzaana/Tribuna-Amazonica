@@ -263,6 +263,19 @@
   }
 }
 
+/* ===========================
+   MENU MOBILE (efeito real)
+=========================== */
+.mobile-menu {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+
+  transition:
+    height 0.35s ease,
+    opacity 0.25s ease;
+}
+
 #toggleMenu {
   background: transparent;
   border: none;
