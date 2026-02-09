@@ -131,7 +131,17 @@ function meu_tema_assets()
 
 add_action('wp_enqueue_scripts', 'meu_tema_assets');
 
-/* ===== NEWSLETTER ===== */
+/* ===== NEWSLETTER FUNCIONAL ===== */
+function create_newsletter_cpt()
+{
+  register_post_type('newsletter_subscriber', [
+    'label' => 'Newsletter',
+    'public' => false,
+    'show_ui' => true,
+    'supports' => ['title'],
+  ]);
+}
+add_action('init', 'create_newsletter_cpt');
 
 add_action('admin_post_nopriv_newsletter_signup', 'handle_newsletter_signup');
 add_action('admin_post_newsletter_signup', 'handle_newsletter_signup');
@@ -143,34 +153,43 @@ function handle_newsletter_signup()
     !isset($_POST['newsletter_nonce']) ||
     !wp_verify_nonce($_POST['newsletter_nonce'], 'newsletter_signup')
   ) {
-    wp_die('Ação inválida');
+    wp_redirect(add_query_arg('newsletter', 'invalid', wp_get_referer()));
+    exit;
   }
 
   // Email
-  $email = isset($_POST['newsletter_email'])
-    ? sanitize_email($_POST['newsletter_email'])
-    : '';
+  $email = sanitize_email($_POST['newsletter_email'] ?? '');
 
   if (!is_email($email)) {
-    wp_die('Email inválido');
+    wp_redirect(add_query_arg('newsletter', 'email_invalid', wp_get_referer()));
+    exit;
   }
 
-  /**
-   * AQUI você decide o que fazer com o email
-   */
+  // Consentimento
+  if (empty($_POST['agreed'])) {
+    wp_redirect(add_query_arg('newsletter', 'consent_required', wp_get_referer()));
+    exit;
+  }
 
-  // Exemplo 1: salvar no banco
-  add_option('newsletter_' . md5($email), $email);
+  // Evitar duplicado
+  $exists = get_page_by_title($email, OBJECT, 'newsletter_subscriber');
 
-  // Exemplo 2 (melhor): salvar como CPT
-  // Exemplo 3: enviar para Mailchimp
-  // Exemplo 4: enviar email de confirmação
+  if ($exists) {
+    wp_redirect(add_query_arg('newsletter', 'already_registered', wp_get_referer()));
+    exit;
+  }
 
-  // Redirect pós-submit
-  wp_redirect(home_url('/obrigado'));
+  // Salvar como CPT
+  wp_insert_post([
+    'post_type'   => 'newsletter_subscriber',
+    'post_status' => 'publish',
+    'post_title'  => $email,
+  ]);
+
+  // Sucesso
+  wp_redirect(add_query_arg('newsletter', 'success', wp_get_referer()));
   exit;
 }
-
 function create_sponsors_cpt()
 {
   $labels = [
