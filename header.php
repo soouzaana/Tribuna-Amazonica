@@ -44,7 +44,6 @@
       </div>
     </div>
 
-
     <!-- LOGO / BUSCA / HAMBURGUER -->
     <div class="bg-white text-green-dark">
       <div class="header-main">
@@ -58,7 +57,7 @@
         </div>
 
         <!-- BUSCA DESKTOP -->
-        <form role="search" method="get" class="search-box" action="<?php echo esc_url(home_url('/')); ?>">
+        <form role="search" method="get" class="search-box search-desktop" action="<?php echo esc_url(home_url('/')); ?>">
           <label class="search-input">
             <span class="search-icon">
               <?php theme_icon('search', 'icon'); ?>
@@ -72,17 +71,16 @@
           </label>
         </form>
 
-        <!-- HAMBURGUER -->
+        <!-- HAMBURGUER MOBILE -->
         <button
-          id="openMenu"
-          class="md:hidden text-green-dark text-3xl"
+          id="toggleMenu"
+          class="md:hidden text-green-dark text-3xl bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent p-2"
           aria-label="Abrir menu">
           ☰
         </button>
       </div>
     </div>
 
-    <!-- MENU DESKTOP -->
     <!-- MENU DESKTOP -->
     <div class="menu-div bg-green-dark">
       <nav class="menu-scroll hidden md:flex">
@@ -97,62 +95,82 @@
       </nav>
     </div>
 
-    <!-- OVERLAY -->
+    <!-- MENU MOBILE INLINE -->
     <div
-      id="overlay"
-      class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+      id="mobileMenu"
+      class="md:hidden bg-white border-t border-gray-100 hidden">
 
-    <!-- DRAWER MOBILE -->
-    <aside
-      id="drawer"
-      class="fixed top-0 right-0 h-full w-80 bg-white z-50 text-green-dark p-4 overflow-y-auto hidden">
-
-      <div class="flex justify-between items-center mb-4">
-        <strong class="text-lg">Menu</strong>
-        <button id="closeMenu" class="text-2xl" aria-label="Fechar menu">✕</button>
+      <!-- Busca Mobile -->
+      <div class="p-4">
+        <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+          <input
+            type="search"
+            name="s"
+            placeholder="Buscar..."
+            value="<?php echo get_search_query(); ?>"
+            class="w-full pl-10 pr-4 py-2 px-3 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-emerald-500" />
+        </form>
       </div>
 
-      <?php get_search_form(); ?>
+      <!-- Links -->
+      <ul class="pb-4">
+        <li>
+          <a class="block px-4 py-3 text-emerald-800 font-medium hover:bg-emerald-50 transition-colors"
+            href="<?php echo esc_url(home_url('/')); ?>">
+            Página Inicial
+          </a>
+        </li>
 
-      <nav class="flex flex-col divide-y mt-6">
         <?php
-        wp_nav_menu([
-          'theme_location' => 'menu-principal',
-          'container'      => false,
-          'items_wrap'     => '%3$s',
-          'menu_class'     => 'hidden'
-        ]);
+        $menu_items = wp_get_nav_menu_items('menu-principal');
+        if ($menu_items) :
+          foreach ($menu_items as $item) :
         ?>
-      </nav>
-    </aside>
+            <li>
+              <a class="block px-4 py-3 text-emerald-800 font-medium hover:bg-emerald-50 transition-colors"
+                href="<?php echo esc_url($item->url); ?>">
+                <?php echo esc_html($item->title); ?>
+              </a>
+            </li>
+        <?php
+          endforeach;
+        endif;
+        ?>
+
+        <?php
+        $categories = get_categories(['orderby' => 'name']);
+        foreach ($categories as $cat) :
+        ?>
+          <li>
+            <a class="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 transition-colors"
+              href="<?php echo esc_url(get_category_link($cat->term_id)); ?>">
+              <?php echo esc_html($cat->name); ?>
+            </a>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
 
     <!-- TICKER -->
     <div class="ticker-bar bg-green-dark text-white py-2 overflow-hidden">
       <span class="ticker-label font-bold px-4">Headlines</span>
-
       <div class="ticker-wrapper overflow-hidden">
         <div class="ticker-track flex gap-8 animate-marquee">
           <?php
-          // Pega as 5 últimas headlines
           $ticker = new WP_Query([
             'posts_per_page' => 5,
             'post_status'    => 'publish',
           ]);
 
-          // Armazena as headlines
           $headlines = [];
-
           while ($ticker->have_posts()) :
             $ticker->the_post();
             $headlines[] = get_the_title();
           endwhile;
-
           wp_reset_postdata();
 
-          // Duplica para criar loop infinito
           $headlines = array_merge($headlines, $headlines);
 
-          // Renderiza
           foreach ($headlines as $headline) :
             echo '<span class="ticker-item whitespace-nowrap">' . esc_html($headline) . '</span>';
           endforeach;
@@ -160,25 +178,18 @@
         </div>
       </div>
     </div>
+
   </header>
 
   <script>
-    const openBtn = document.getElementById('openMenu')
-    const closeBtn = document.getElementById('closeMenu')
-    const drawer = document.getElementById('drawer')
-    const overlay = document.getElementById('overlay')
+    const toggleBtn = document.getElementById('toggleMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    function openMenu() {
-      drawer.classList.remove('hidden')
-      overlay.classList.remove('hidden')
-    }
+    toggleBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
 
-    function closeMenu() {
-      drawer.classList.add('hidden')
-      overlay.classList.add('hidden')
-    }
-
-    openBtn?.addEventListener('click', openMenu)
-    closeBtn?.addEventListener('click', closeMenu)
-    overlay?.addEventListener('click', closeMenu)
+      // alterna ícone ☰ / ✕
+      toggleBtn.textContent =
+        mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+    });
   </script>
